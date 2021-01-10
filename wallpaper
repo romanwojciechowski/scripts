@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Requirements: dmenu, xwallpaper
+# Usage:
+# ./wallpaper	# random wallpaper from given directory
+# ./wallpaper c # choose  wallpaper from given directory
+
+dir="$HOME/pix/wallpapers/" # directory with wallpapers (keep a trailing slash)
+
+case "$1" in
+	c*) xwallpaper --zoom $(printf "%s%s" "$dir" "$(ls $dir | dmenu -l 15)") ;;
+	*) xwallpaper --zoom $(printf "%s%s" "$dir" "$(ls $dir | shuf -n 1)") ;;
+esac
